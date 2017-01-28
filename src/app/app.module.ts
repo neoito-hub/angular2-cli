@@ -8,6 +8,7 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
+import { GithubService } from './github.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { SearchComponent } from './search/search.component';
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot()
   ],
-  providers: [],
+  providers: [GithubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

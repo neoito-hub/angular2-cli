@@ -1,15 +1,40 @@
-import { Component } from '@angular/core';
-import { Github } from './github';
+import { Component, OnInit } from '@angular/core';
+import { GithubService } from './github.service';
+import 'rxjs/Rx';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Github Profile Search';
-  public githubUser1: Github;
-  constructor() {
-    this.githubUser1 = new Github(false, null, '')
+  githubUser: any;
+  errorMessage: any;
+  constructor(private githubService: GithubService) {
+    this.githubUser = {};
   }
+  ngOnInit() {
 
+      if (this.githubUser) {
+          this.githubUser.user = false;
+          this.getUserInformation();
+      }
+
+  }
+  searchUser() {
+      if (this.githubUser.userName && this.githubUser.userName.length > 0) {
+          this.githubService.updateUser(this.githubUser.userName);
+          this.getUserInformation();
+      } else {
+          this.githubUser.user = false;
+      }
+  }
+  getUserInformation() {
+    this.githubService.getUser()
+        .subscribe(
+          data => this.githubUser = data,
+          error =>  this.errorMessage = <any>error
+        );
+  }
 }
