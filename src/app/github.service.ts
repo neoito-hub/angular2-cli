@@ -11,7 +11,7 @@ export class GithubService {
   }
 
   getUser() {
-    return this.http.get('http://api.github.com/users/' + this.userName
+    return this.http.get('https://api.github.com/users/' + this.userName
     + '?client_id=' + this.clientId
     + '&client_secret=' + this.clientSecret)
                     .map((res: Response) => res.json());
