@@ -1,4 +1,4 @@
-<md-card fx-layout="row" fx-layout-align="center center" style="margin:15px;">
+<md-card layout-xs="column" layout="row" layout-align="center center">
 <h1>
   {{title}}
 </h1>
@@ -6,21 +6,19 @@
 <md-input-container>
   <input md-input placeholder="Github username" [(ngModel)] = githubUser.userName (keyup)="searchUser()">
 </md-input-container>
-  <div fx-flex="55%" style="height:620px">
-<md-card  style="margin:15px;">
+<md-card  layout-align="center center" flex width="200">
   <md-card-header>
-    <md-card-title>{{user.name}}</md-card-title>
-    <md-card-subtitle>{{user.company}}</md-card-subtitle>
+    <md-card-title>{{githubUser.user.name}}</md-card-title>
+    <md-card-subtitle>{{githubUser.user.company}}</md-card-subtitle>
   </md-card-header>
-  <img md-card-image src={{user.avatar_url}} flex width="200">
+  <img md-card-image src={{githubUser.user.avatar_url}} flex width="200">
   <md-card-content>
     <p>
-      {{user.bio}}
+      {{githubUser.user.bio}}
     </p>
   </md-card-content>
   <md-card-actions>
   </md-card-actions>
 </md-card>
-</div>
-
 </md-card>
+<app-navbar></app-navbar>
