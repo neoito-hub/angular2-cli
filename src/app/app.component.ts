@@ -10,9 +10,11 @@ import 'rxjs/Rx';
 export class AppComponent implements OnInit {
   title = 'Github Profile Search';
   githubUser: any;
+  user: any;
   errorMessage: any;
   constructor(private githubService: GithubService) {
     this.githubUser = {};
+    this.user = {};
   }
   ngOnInit() {
 
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit {
       if (this.githubUser.userName && this.githubUser.userName.length > 0) {
           this.githubService.updateUser(this.githubUser.userName);
           this.getUserInformation();
+          // console.log(this.githubUser)
       } else {
           this.githubUser.user = false;
       }
@@ -33,8 +36,9 @@ export class AppComponent implements OnInit {
   getUserInformation() {
     this.githubService.getUser()
         .subscribe(
-          data => this.githubUser = data,
+          data => this.user = data,
           error =>  this.errorMessage = <any>error
         );
+        console.log(this.user.name);
   }
 }
