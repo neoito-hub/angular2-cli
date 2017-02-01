@@ -15,11 +15,8 @@ export class AppComponent implements OnInit {
     this.githubUser = {};
   }
   ngOnInit() {
-
-      if (this.githubUser) {
           this.githubUser.user = false;
           this.getUserInformation();
-      }
   }
   searchUser() {
       if (this.githubUser.userName && this.githubUser.userName.length > 0) {
@@ -37,6 +34,6 @@ export class AppComponent implements OnInit {
           data => this.githubUser.user = data,
           error =>  this.errorMessage = <any>error
         );
-        console.log('Rabbit' + this.githubUser);
+        console.log('Github Username' + this.githubUser);
   }
 }
